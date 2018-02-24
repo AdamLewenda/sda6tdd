@@ -84,5 +84,4 @@ public class WriterTest {
 
         Assert.assertEquals("HELLO, SZYMON, JAN AND ANNA!", result);
     }
-
 }
