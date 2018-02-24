@@ -48,4 +48,22 @@ public class WriterTest {
 
         Assert.assertEquals("HELLO, ADAM!", result);
     }
+
+    @Test
+    public void sayHelloWithOneSpaceNameTest() {
+        String name = " ";
+
+        String result = writer.sayHello(name);
+
+        Assert.assertEquals("Hello, my friend!", result);
+    }
+
+    @Test
+    public void sayHelloWithMultiSpaceNameTest() {
+        String name = "      ";
+
+        String result = writer.sayHello(name);
+
+        Assert.assertEquals("Hello, my friend!", result);
+    }
 }
