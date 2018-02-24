@@ -1,12 +1,20 @@
 package com.sda;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class WriterTest {
+
+    private Writer writer;
+
+    @Before
+    public void init() {
+        writer = new Writer();
+    }
+
     @Test
     public void sayHelloWithGivenNameTest() {
-        Writer writer = new Writer();
         String name = "Adam";
 
         String result = writer.sayHello(name);
@@ -16,7 +24,6 @@ public class WriterTest {
 
     @Test
     public void sayHelloWithNoNameSpecifiedTest() {
-        Writer writer = new Writer();
         String name = "";
 
         String result = writer.sayHello(name);
@@ -26,11 +33,19 @@ public class WriterTest {
 
     @Test
     public void sayHelloWithNullNameTest() {
-        Writer writer = new Writer();
         String name = null;
 
         String result = writer.sayHello(name);
 
         Assert.assertEquals("Hello, my friend!", result);
+    }
+
+    @Test
+    public void sayHelloWithCapitalizedNameTest() {
+        String name = "ADAM";
+
+        String result = writer.sayHello(name);
+
+        Assert.assertEquals("HELLO, ADAM!", result);
     }
 }
