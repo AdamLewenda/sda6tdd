@@ -11,3 +11,9 @@ Feature: CalcService
     And I pass null text value
     When I execute Calculate method
     Then I get 0 as a result
+
+  Scenario: Should return 0 when blank text is passed
+    Given I initialize CalcService
+    And I pass blank value
+    When I execute Calculate method
+    Then I get 0 as a result
