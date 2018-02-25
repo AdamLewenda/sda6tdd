@@ -11,7 +11,11 @@ public class UserService {
         this.users = new ArrayList<>();
     }
 
-    public int getNumberOfUsers(){
+    public boolean isUserPresent(int userId) {
+        return users.stream().anyMatch(e -> userId == e.getId());
+    }
+
+    public int getNumberOfUsers() {
         return users.size();
     }
 
@@ -24,4 +28,5 @@ public class UserService {
         }
         return result;
     }
+
 }
