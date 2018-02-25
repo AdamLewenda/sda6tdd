@@ -12,6 +12,7 @@ public class PostOfficeSteps {
 
     private PostOffice postOffice;
     private boolean createUserResult;
+    private boolean sendNewMessageResult;
 
     @Given("^I instantiate PostOffice$")
     public void I_instantiate_PostOffice() {
@@ -25,14 +26,31 @@ public class PostOfficeSteps {
         postOffice.setUserStorage(mockUserStorage);
     }
 
+    @And("^I mock senderService to return (.*) when sendMessage method called$")
+    public void I_mock_senderService_to_return_value_when_sendMessage_method_called(String value) {
+        SenderService senderService = Mockito.mock(SenderService.class);
+        Mockito.when(senderService.sendMessage(Mockito.anyString(), Mockito.anyString(), Mockito.anyString())).thenReturn(Boolean.valueOf(value));
+        postOffice.setSenderService(senderService);
+    }
+
+
     @When("^I create new user with nickname (.*)$")
     public void I_create_new_user_with_nickname_nickname(String nickname) {
         createUserResult = postOffice.createNewUser(nickname);
     }
 
+    @And("^I send new message (.*) from (.*) to (.*)$")
+    public void I_send_new_message_message_from_from_to_to(String message, String from, String to) {
+        sendNewMessageResult = postOffice.sendNewMessage(from, to, message);
+    }
+
     @Then("^User with nickname (.*) is present$")
     public void User_with_nickname_nickname_is_present(String nickname) {
         Assert.assertTrue("User is not present.", createUserResult);
+    }
 
+    @And("^Message (.*) from (.*) is sent to (.*)$")
+    public void Message_message_from_from_is_sent_to_to(String message, String from, String to) {
+        Assert.assertTrue("Message is not present.", sendNewMessageResult);
     }
 }
