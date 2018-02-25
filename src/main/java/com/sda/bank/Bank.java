@@ -6,31 +6,29 @@ import java.util.List;
 public class Bank {
     private static int idCounter = 0;
     private String name;
-    private List<User> users;
+    private UserService userService;
     private List<Account> accounts;
 
     public Bank(String name) {
         this.name = name;
-        this.users = new ArrayList<>();
+        this.userService = new UserService();
         this.accounts = new ArrayList<>();
     }
 
+    public int getNumberOfUsers() {
+        return userService.getNumberOfUsers();
+    }
+
     public boolean addUser(User user) {
-        boolean result = false;
-        if (user != null) {
-            user.setId(idCounter++);
-            users.add(user);
-            result = true;
-        }
-        return result;
+        return userService.addUser(user);
     }
 
     public String getName() {
         return name;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public UserService getUserService() {
+        return userService;
     }
 
     public List<Account> getAccounts() {
